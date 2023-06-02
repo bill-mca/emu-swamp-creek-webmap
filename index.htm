@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Emu Swamp Creek</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+    
+  <script src="jsons/hgls.js"></script>
+  <script src="jsons/soils.js"></script>
+  <script src="jsons/pois.js"></script>
+    
+  <style type="text/css">
+    body {
+       margin: 0;
+       padding: 0;
+    }
+    html, body, #map{
+       width: 100%;
+       height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+      
+  function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function(word) {
+      return (word.charAt(0).toUpperCase() + word.slice(1));
+    }).join(' ');
+  }
+  function style_hglLayer_0_0(feature) {
+            switch(String(feature.properties['HGL'])) {
+                case 'Bourbin Hills':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(150,35,226,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Brogan View':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(203,35,37,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Dunn\'s Farm':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(207,198,118,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Dunville Homestead':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(21,235,82,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Genowlan Mountain':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(238,129,182,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Glen Alice':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(182,122,48,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Glen Davis':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(140,227,120,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Horse Gap':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(55,178,212,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Marlyn Gate':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(213,162,123,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Mount Marsden':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(62,39,211,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Nile':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(201,117,197,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'Port Macquarie Station':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(91,133,225,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'NULL':
+                    return {
+                //pane: 'pane_hglLayer_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(167,238,44,1.0)',
+                //interactive: false,
+            }
+                    break;
+            }
+        }
+        function style_soilLayer_1_0(feature) {
+            switch(String(feature.properties['CODE'])) {
+                case 'bb':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(230,114,119,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'cb':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(236,168,107,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'cg':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(114,201,185,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'co':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(232,226,216,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'dc':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(216,46,143,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'ga':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(219,121,93,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'gy':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(209,161,30,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'ha':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(200,64,212,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'ho':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(173,102,214,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'hw':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(142,206,122,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'li':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(88,70,229,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'mb':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(218,66,193,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'ms':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(108,43,219,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'np':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(24,235,88,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'pf':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(109,151,214,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'pm':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(109,151,214,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'ro':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(210,210,90,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'to':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(36,207,219,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'um':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(76,167,212,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'wb':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(251,154,153,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'wo':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(181,233,133,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'wr':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(229,97,137,1.0)',
+                //interactive: false,
+            }
+                    break;
+                case 'NULL':
+                    return {
+                //pane: 'pane_soilLayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.5,
+                fillColor: 'rgba(75,228,159,1.0)',
+                //interactive: false,
+            }
+                    break;
+            }
+        }
+      var map = L.map('map', {
+          zoomControl:true, maxZoom:17, minZoom:10});
+      map.setView([-33.08257189093468, 150.15173896278007], 13.0)
+      
+      osmBasemap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Basemap &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      })
+      osmBasemap.addTo(map)
+      
+      esriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Imagery © ESRI source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community'
+      })
+      //esriImagery.addTo(map)
+      
+      var hillshadeLayer = L.tileLayer('hillshade2/{z}/{x}/{y}.png', {
+        minZoom: 10,
+        maxZoom: 20,
+        tms: false,
+        attribution: 'Hillshade derived from Wallerawang LiDAR survey (2017) 2m DEM ©  NSW Department Finance, Services and Innovation Spatial Services Unit'
+      })
+      hillshadeLayer.addTo(map);
+      
+      var poisLayer = L.geoJSON(pois, {
+          onEachFeature: function ( feature, layer ) {
+              layer.bindPopup(feature.properties.description)
+          }
+      })
+      
+
+      var hglLayer = L.geoJSON(hgls, {
+        style: style_hglLayer_0_0,
+        onEachFeature: function (feature, layer) {
+            var popupContent = '<table>';
+            for (var p in feature.properties) {
+                popupContent += '<tr><td>' + p + 
+                    '</td><td>'+ feature.properties[p] + '</td></tr>';
+                }
+            popupContent += '</table>';
+            //popupContent += '<a href="www.environment.nsw.gov.au/Salis5app/resources/spade/reports/' + HGL_CAP_6.pdf'
+            layer.bindPopup(popupContent);
+          },
+          attribution: 'Hydrogeological Landscapes © State Government of NSW and Department of Planning, Industry and Environment 2019'
+      })
+      //hglLayer.addTo(map)
+      
+      var soilLayer = L.geoJSON(soils, {
+          style: style_soilLayer_1_0,
+          onEachFeature: function (feature, layer) {
+              var popupContent = 
+                  titleCase(feature.properties.NAME) + ' - ' + titleCase(feature.properties.PROCESS) + ' Soil Landscape ' +
+                  '<a href="https://www.environment.nsw.gov.au/Salis5app/resources/spade/reports/8931' + 
+                  feature.properties.CODE + '.pdf"><br>REPORT </a>';
+              popupContent += '';
+              layer.bindPopup(popupContent)
+          },
+          attribution: 'Soil Landscapes © State Government of NSW and Department of Planning, Industry and Environment 2019'
+      })
+      //soilLayer.addTo(map)
+      
+  var baseLayers = {
+    'Open Street Map': osmBasemap,
+    'ESRI Aerial Image': esriImagery
+  };
+
+  var overlays = {
+    "Hill Shade": hillshadeLayer,
+    "Soil Landscapes": soilLayer,
+    "Hydrogeological Landscapes": hglLayer,
+    "Points of Interest": poisLayer
+  };
+
+        L.control.layers(baseLayers, {'<b>Points of Interest</b>': poisLayer, '<b>Capertee Hillshade</b>':hillshadeLayer, '<b>Capertee Soil Landscapes</b>': soilLayer,'<b>Hydrogeological Landscapes</b><br /><table><tr><td style="text-align: center;"><img src="legend/hglLayer_0_BourbinHills0.png" /></td><td>Bourbin Hills</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_BroganView1.png" /></td><td>Brogan View</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_DunnsFarm2.png" /></td><td>Dunn\'s Farm</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_DunvilleHomestead3.png" /></td><td>Dunville Homestead</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_GenowlanMountain4.png" /></td><td>Genowlan Mountain</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_GlenAlice5.png" /></td><td>Glen Alice</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_GlenDavis6.png" /></td><td>Glen Davis</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_HorseGap7.png" /></td><td>Horse Gap</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_MarlynGate8.png" /></td><td>Marlyn Gate</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_MountMarsden9.png" /></td><td>Mount Marsden</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_Nile10.png" /></td><td>Nile</td></tr><tr><td style="text-align: center;"><img src="legend/hglLayer_0_PortMacquarieStation11.png" /></td><td>Port Macquarie Station</td></tr></table>': hglLayer,},{collapsed:false}).addTo(map);
+
+      
+  </script>
+</body>
+</html>
